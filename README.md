@@ -2,17 +2,19 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| age                | string | null: false |
-| last_name          | string | null: false |
-| first_name         | string | null: false |
+| Column             | Type   | Options                    |
+| ------------------ | ------ | -------------------------- |
+| name               | string | null: false                |
+| email              | string | null: false, unique: true  |
+| encrypted_password | string | null: false                |
+| age                | date   | null: false                |
+| last_name          | string | null: false                |
+| first_name         | string | null: false                |
+| last_name_kana     | string | null: false                |
+| first_name_kana    | string | null: false                |
 
 ###Association
-- belongs_to :item
+- has_many :items
 - belongs_to :order
 
 ## items テーブル
@@ -21,16 +23,18 @@
 | ------------ | ------------- | ------------------------------ |
 | item_date    | string        | null: false                    |
 | item_text    | string        | null: false                    |
-| category     | string        | null: false                    |
-| condition    | string        | null: false                    |
-| delivery     | string        | null: false                    |
+| category     | integer       | null: false                    |
+| condition    | integer       | null: false                    |
+| delivery     | integer       | null: false                    |
 | area         | string        | null: false                    |
-| days         | string        | null: false                    |
+| day          | string        | null: false                    |
+| price        | string        | null: false                    |
 | user         | references    | null: false, foreign_key: true |
 
 ###Association
 - has_many :users
 - has_many :orders
+- has_many :orders, through: :order_tags
 
 ## orders テーブル
 
@@ -51,3 +55,15 @@
 ###Association
 - has_many :users
 - has_many :items
+- has_many :items, through: :order_tags
+
+## order_tags テーブル
+
+| Column              | Type         | Options                         |
+| ------------------- | ------------ | ------------------------------- |
+| item                | references   | null: false, foreign_key: true  |
+| order               | references   | null: false, foreign_key: true  |
+
+###Association
+- belongs_to :items
+- belongs_to :orders
