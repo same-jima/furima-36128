@@ -26,21 +26,21 @@
 | category_id     | integer       | null: false                    |
 | condition_id    | integer       | null: false                    |
 | delivery_id     | integer       | null: false                    |
-| area_id         | string        | null: false                    |
+| area_id         | integer       | null: false                    |
 | delivery_day_id | integer       | null: false                    |
 | price           | integer       | null: false                    |
 | user            | references    | null: false, foreign_key: true |
 
 ###Association
 - belongs_to :user
-- has_one :order
+- has_one :item_tag
 
 ## orders テーブル
 
 | Column              | Type         | Options                         |
 | ------------------- | ------------ | ------------------------------- |
 | postal_code         | string       | null: false                     |
-| area_id             | string       | null: false                     |
+| area_id             | integer      | null: false                     |
 | municipality_id     | integer      | null: false                     |
 | address             | string       | null: false                     |
 | building            | string       |                                 |
