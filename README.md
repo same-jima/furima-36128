@@ -32,7 +32,6 @@
 | item_tag        | references    | null: false, foreign_key: true |
 
 ###Association
-- belongs_to :user
 - has_one :item_tag
 
 ## orders テーブル
@@ -56,7 +55,7 @@
 | ------------------- | ------------ | ------------------------------- |
 | item                | references   | null: false, foreign_key: true  |
 | user                | references   | null: false, foreign_key: true  |
-
+| order               | references   | null: false, foreign_key: true  |
 ###Association
 - belongs_to :item
 - belongs_to :user
