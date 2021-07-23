@@ -45,7 +45,7 @@
 | address             | string       | null: false                     |
 | building            | string       |                                 |
 | phone_num           | string       | null: false                     |
-| order_tags          | references   | null: false, foreign_key: true  |
+| order_tag           | references   | null: false, foreign_key: true  |
 
 ###Association
 - has_many :order_tag
