@@ -15,7 +15,7 @@
 
 ###Association
 - has_many :items
-- has_many :orders
+- has_one :order
 
 ## items テーブル
 
@@ -26,7 +26,7 @@
 | category_id     | integer       | null: false                    |
 | condition_id    | integer       | null: false                    |
 | delivery_id     | integer       | null: false                    |
-| area_id         | integer       | null: false                    |
+| area_id         | string        | null: false                    |
 | delivery_day_id | integer       | null: false                    |
 | price           | integer       | null: false                    |
 | user            | references    | null: false, foreign_key: true |
@@ -40,7 +40,7 @@
 | Column              | Type         | Options                         |
 | ------------------- | ------------ | ------------------------------- |
 | postal_code         | string       | null: false                     |
-| area                | string       | null: false                     |
+| area_id             | string       | null: false                     |
 | municipality_id     | integer      | null: false                     |
 | address             | string       | null: false                     |
 | building            | string       |                                 |
@@ -54,7 +54,6 @@
 
 | Column              | Type         | Options                         |
 | ------------------- | ------------ | ------------------------------- |
-| name                | string       |                                 |
 | item                | references   | null: false, foreign_key: true  |
 | user                | references   | null: false, foreign_key: true  |
 
