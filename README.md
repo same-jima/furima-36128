@@ -15,7 +15,7 @@
 
 ###Association
 - has_many :items
-- has_many :orders
+- has_many :item_tags
 
 ## items テーブル
 
@@ -29,10 +29,11 @@
 | area_id         | integer       | null: false                    |
 | delivery_day_id | integer       | null: false                    |
 | price           | integer       | null: false                    |
-| item_tag        | references    | null: false, foreign_key: true |
+| user            | references    | null: false, foreign_key: true |
 
 ###Association
 - has_one :item_tag
+- belongs_to :user
 
 ## orders テーブル
 
@@ -55,8 +56,8 @@
 | ------------------- | ------------ | ------------------------------- |
 | item                | references   | null: false, foreign_key: true  |
 | user                | references   | null: false, foreign_key: true  |
-| order               | references   | null: false, foreign_key: true  |
+
 ###Association
 - belongs_to :item
 - belongs_to :user
-- belongs_to :oder
+- has_many :orders
