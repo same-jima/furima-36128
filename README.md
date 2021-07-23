@@ -14,8 +14,8 @@
 | first_name_kana    | string | null: false                |
 
 ###Association
-- has_many :item
-- has_many :order
+- has_many :items
+- has_many :orders
 
 ## items テーブル
 
@@ -33,31 +33,31 @@
 
 ###Association
 - belongs_to :user
-- belongs_to :order
+- has_one :order
 
 ## orders テーブル
 
 | Column              | Type         | Options                         |
 | ------------------- | ------------ | ------------------------------- |
-| postal_code_id      | integer      | null: false                     |
-| area_id             | integer      | null: false                     |
+| postal_code         | string       | null: false                     |
+| area                | string       | null: false                     |
 | municipality_id     | integer      | null: false                     |
 | address             | string       | null: false                     |
 | building            | string       |                                 |
 | phone_num           | string       | null: false                     |
-| order_tag           | references   | null: false, foreign_key: true  |
+| item_tag            | references   | null: false, foreign_key: true  |
 
 ###Association
-- has_many :order_tag
+- belongs_to :item_tag
 
-## order_tags テーブル
+## item_tags テーブル
 
 | Column              | Type         | Options                         |
 | ------------------- | ------------ | ------------------------------- |
 | name                | string       |                                 |
 | item                | references   | null: false, foreign_key: true  |
-| order               | references   | null: false, foreign_key: true  |
+| user                | references   | null: false, foreign_key: true  |
 
 ###Association
 - belongs_to :item
-- belongs_to :order
+- belongs_to :user
