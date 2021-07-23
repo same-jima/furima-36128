@@ -26,10 +26,11 @@
 | category_id     | integer       | null: false                    |
 | condition_id    | integer       | null: false                    |
 | delivery_id     | integer       | null: false                    |
-| area_id         | integer       | null: false                    |
+| area_id         | string        | null: false                    |
 | delivery_day_id | integer       | null: false                    |
 | price           | integer       | null: false                    |
 | user            | references    | null: false, foreign_key: true |
+| item_tag        | references    | null: false, foreign_key: true |
 
 ###Association
 - belongs_to :user
@@ -40,8 +41,8 @@
 | Column              | Type         | Options                         |
 | ------------------- | ------------ | ------------------------------- |
 | postal_code         | string       | null: false                     |
-| area_id             | integer      | null: false                     |
-| municipality_id     | integer      | null: false                     |
+| area_id             | string       | null: false                     |
+| municipality        | string       | null: false                     |
 | address             | string       | null: false                     |
 | building            | string       |                                 |
 | phone_num           | string       | null: false                     |
