@@ -6,6 +6,21 @@ RSpec.describe User, type: :model do
   end
 
   describe '新規登録' do
+    context '登録できる時' do
+      it 'name,email,birthdy,password,password_confirmation,last_name,first_name,last_name_kana,first_name_kanaが存在すれば登録できる' do
+        @user.name = '山田太朗'
+        @user.email = 'test01@icloud.com'
+        @user.birthday = '1990-01-01'
+        @user.password = 'test01'
+        @user.password_confirmation = 'test01'
+        @user.last_name = '太朗'
+        @user.first_name = '山田'
+        @user.last_name_kana = 'タロウ'
+        @user.first_name_kana = 'ヤマダ'
+        expect(@user).to be_valid
+      end
+    end
+
     context '登録できない時' do
       it 'ニックネームが必須' do
         @user.name = ''
