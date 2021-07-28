@@ -10,6 +10,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :title, :text, :price
-    validates :category_id, :condition_id, :delivery_id, :area_id, 
+    validates :category_id, :condition_id, :delivery_id, :delivery_day_id, :area_id, 
     numericality: {other_than: 1 , message: "can't be blank"}
+  end
 end
