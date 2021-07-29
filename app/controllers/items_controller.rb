@@ -13,7 +13,20 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      puts = @item.errors.full_messages
       render :new
+    end
+  end
+
+  def edit
+    
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      render :edit
     end
   end
 
