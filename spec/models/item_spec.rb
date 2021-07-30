@@ -16,9 +16,9 @@ RSpec.describe Item, type: :model do
 
     context '商品出品できない時' do
       it '商品画像を1枚つけることが必須である' do
-        @item.title = ''
+        @item.image= nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "Title can't be blank"
+        expect(@item.errors.full_messages).to include "Image can't be blank"
       end
       it '商品名が必須である' do
         @item.name = ''
