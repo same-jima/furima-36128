@@ -99,8 +99,25 @@ RSpec.describe Item, type: :model do
         @item.price = '００００'
         @item.valid?
         expect(@item.errors.full_messages).to include "Price ¥300~¥9999999(半角数字)の入力"
+      end     
+      it '価格は半角英字のみだと保存できないこと' do
+        @item.price = 'abcd'
+        @item.valid?
+        except(@item.errors.full_messages).to include "Price ¥300~¥9999999(半角数字)の入力"
       end
-      
+      it '価格は半角英数字のみだと保存できないこと' do
+        @item.price = 'ab12'
+        @item.valid?
+        except(@item.errors.full_messages).to include "Price ¥300~¥9999999(半角数字)の入力"
+      end
+
+      it '価格は全角数字だと保存できないこと' do
+        @item.price = '１２３４'
+        @item.valid?
+        binding.pry
+        except(@item.errors.full_messages).to include "Price ¥300~¥9999999(半角数字)の入力"
+      end
+
     end
 
 
