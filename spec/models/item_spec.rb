@@ -114,7 +114,6 @@ RSpec.describe Item, type: :model do
       it '価格は全角数字だと保存できないこと' do
         @item.price = '１２３４'
         @item.valid?
-        binding.pry
         except(@item.errors.full_messages).to include "Price ¥300~¥9999999(半角数字)の入力"
       end
 
