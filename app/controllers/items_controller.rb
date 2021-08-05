@@ -26,7 +26,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    
+    if @item.item_tag.present? == true
+      redirect_to root_path
+    end
   end
 
   def update
