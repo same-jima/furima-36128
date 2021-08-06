@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+  before_action :redirect_index, onjy: [:edit, :update]
+  before_action :session_sign, only: [:edit, :update]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -26,9 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.item_tag.present? == true
-      redirect_to root_path
-    end
+    
   end
 
   def update
@@ -58,5 +58,16 @@ class ItemsController < ApplicationController
     redirect_to root_path unless current_user.id == @item.user_id
   end
 
+  def session_sign
+    unless user_signed_in?
+      link_to new_user_session_path
+    end
+  end
+
+  def redirect_index
+    if @item_tag.present? == true
+      redirect_to root_path
+    end
+  end
   
 end

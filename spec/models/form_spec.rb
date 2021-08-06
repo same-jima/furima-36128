@@ -85,6 +85,21 @@ RSpec.describe Form, type: :model do
         @form.valid?
         expect(@form.errors.full_messages).to include "Phone num ハイフンなし10桁or11桁"
       end
+      it '電話番号が英数混合では購入できない' do
+        @form.phone_num = "0805330abcd"
+        @form.valid?
+        expect(@form.errors.full_messages).to include "Phone num ハイフンなし10桁or11桁"
+      end
+      it 'user_idが空では購入できないこと' do
+        @form.user_id = ""
+        @form.valid?
+        expect(@form.errors.full_messages).to include "User can't be blank"
+      end
+      it 'item_idが空では購入できないこ' do
+        @form.item_id = ""
+        @form.valid?
+        expect(@form.errors.full_messages).to include "Item can't be blank"
+      end
     end
   end
 end
