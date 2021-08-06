@@ -18,7 +18,7 @@ RSpec.describe Form, type: :model do
         expect(@form).to be_valid
       end
     end
-    
+
     context '内容に問題がある時' do
       it 'tokenが空だと購入できない' do
         @form.token = ""
@@ -69,16 +69,6 @@ RSpec.describe Form, type: :model do
         @form.address = ""
         @form.valid?
         expect(@form.errors.full_messages).to include "Address can't be blank"
-      end
-      it 'addressが数値のみだと購入できない' do
-        @form.address = "1-21-1"
-        @form.valid?
-        expect(@form.errors.full_messages).to include "Address 全角ひらがな、全角カタカナ、漢字"
-      end
-      it 'addressが半角のみだと購入できない' do
-        @form.address = "ｱｲｳｴｵ123"
-        @form.valid?
-        expect(@form.errors.full_messages).to include "Address 全角ひらがな、全角カタカナ、漢字"
       end
       it 'phone_numが空だと購入できない' do
         @form.phone_num = ""
