@@ -46,7 +46,7 @@ RSpec.describe Form, type: :model do
         expect(@form.errors.full_messages).to include "Area can't be blank"
       end
       it 'area_idが空だと購入できない' do
-        @form.area_id = "1"
+        @form.area_id = 1
         @form.valid?
         expect(@form.errors.full_messages).to include "Area can't be blank"
       end

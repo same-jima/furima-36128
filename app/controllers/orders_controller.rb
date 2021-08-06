@@ -33,11 +33,7 @@ class OrdersController < ApplicationController
   end
 
   def contributor_confirmation
-    if @item.item_tag.present? == true 
-      redirect_to root_path
-    else
-      redirect_to root_path unless current_user.id == @item.user_id
-    end
+    redirect_to root_path if @item.item_tag.present? || current_user.id == @item.user_id
   end
 
   def pay_item

@@ -58,12 +58,6 @@ class ItemsController < ApplicationController
     redirect_to root_path unless current_user.id == @item.user_id
   end
 
-  def session_sign
-    unless user_signed_in?
-      link_to new_user_session_path
-    end
-  end
-
   def redirect_index
     if @item_tag.present? == true
       redirect_to root_path
