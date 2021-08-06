@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :set_item, only:[:index, :create]
+  before_action :contributor_confirmation, only: [:index]
 
   def index
     @form = Form.new
@@ -29,6 +30,14 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def contributor_confirmation
+    if @item.item_tag.present? == true 
+      redirect_to root_path
+    else
+      redirect_to root_path unless current_user.id == @item.user_id
+    end
   end
 
   def pay_item
