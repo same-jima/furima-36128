@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
   before_action :redirect_index, onjy: [:edit, :update]
-  before_action :session_sign, only: [:edit, :update]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
